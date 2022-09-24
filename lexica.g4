@@ -13,7 +13,7 @@ FALSE: F A L S E;
 TRUE: T R U E;
 WRITE: W R I T E;
 
-ID: [a-zA-Z]{1, 16};
+ID: (LETTER | UNDERSCORE) (LETTER | NUMBER | UNDERSCORE){1, 16};
 CTE: [0-9]{1, 5};
 
 OPAD: '+' | '-';
@@ -61,3 +61,6 @@ fragment W:('w'|'W');
 fragment X:('x'|'X');
 fragment Y:('y'|'Y');
 fragment Z:('z'|'Z');
+fragment LETTER: [a-zA-Z];
+fragment NUMBER: [0-9];
+fragment UNDERSCORE: '_';
