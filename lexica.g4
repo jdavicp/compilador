@@ -12,9 +12,13 @@ VAR: V A R;
 FALSE: F A L S E;
 TRUE: T R U E;
 WRITE: W R I T E;
+IF: I F;
+THEN: T H E N;
+ELSE: E L S E;
+STRING: S T R I N G;
 
 ID: (LETTER | UNDERSCORE) (LETTER | NUMBER | UNDERSCORE){1, 16};
-CTE: [0-9]{1, 5};
+CTE: ('-'NUMBER{1, 5}) | NUMBER{1, 5};
 
 OPAD: '+' | '-';
 OPMUT: '*' | '/';
@@ -30,7 +34,7 @@ VIG: ',';
 ABPAR: '(';
 FPAR: ')';
 ATRIB: ':=';
-
+CADEIA: '"'(LETTER | NUMBER | UNDERSCORE | SYMBOLS)*'"';
 WS: [ \n\t\r] -> skip;
 COMMENT : '/' .*? '/' -> skip;
 
@@ -64,3 +68,4 @@ fragment Z:('z'|'Z');
 fragment LETTER: [a-zA-Z];
 fragment NUMBER: [0-9];
 fragment UNDERSCORE: '_';
+fragment SYMBOLS: [=-+!@#$%'&*];
