@@ -68,4 +68,4 @@ fragment Z:('z'|'Z');
 fragment LETTER: [a-zA-Z];
 fragment NUMBER: [0-9];
 fragment UNDERSCORE: '_';
-fragment SYMBOLS: [=-+!@#$%'&*];
+fragment SYMBOLS: '=' | '-' | '+' | '!' | '@' | '#' | '$' | '%' | '&' | '*';
