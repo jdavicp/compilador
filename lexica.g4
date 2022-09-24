@@ -32,6 +32,8 @@ FPAR: ')';
 ATRIB: ':=';
 
 WS: [ \n\t\r] -> skip;
+COMMENT : '/' .*? '/' -> skip;
+
 
 fragment A:('a'|'A');
 fragment B:('b'|'B');
