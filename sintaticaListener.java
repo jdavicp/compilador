@@ -166,4 +166,34 @@ public interface sintaticaListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCmdAtrib(sintaticaParser.CmdAtribContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link sintaticaParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpr(sintaticaParser.ExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link sintaticaParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpr(sintaticaParser.ExprContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link sintaticaParser#terms}.
+	 * @param ctx the parse tree
+	 */
+	void enterTerms(sintaticaParser.TermsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link sintaticaParser#terms}.
+	 * @param ctx the parse tree
+	 */
+	void exitTerms(sintaticaParser.TermsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link sintaticaParser#oPS}.
+	 * @param ctx the parse tree
+	 */
+	void enterOPS(sintaticaParser.OPSContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link sintaticaParser#oPS}.
+	 * @param ctx the parse tree
+	 */
+	void exitOPS(sintaticaParser.OPSContext ctx);
 }

@@ -16,23 +16,23 @@ public class sintaticaParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		Expr=1, Terms=2, OPS=3, PROGRAM=4, INTEGER=5, BOOLEAN=6, BEGIN=7, END=8, 
-		WHILE=9, DO=10, READ=11, VAR=12, FALSE=13, TRUE=14, WRITE=15, IF=16, THEN=17, 
-		ELSE=18, STRING=19, ID=20, CTE=21, MAIS=22, MENOS=23, MULT=24, DIV=25, 
-		OR=26, AND=27, NEG=28, OPAD=29, OPMUT=30, OPLOG=31, OPNEG=32, MENOR=33, 
-		MAIOR=34, MENORIG=35, MAIORIG=36, IGUAL=37, DIFERENTE=38, OPREL=39, PVIG=40, 
-		PONTO=41, DPONTOS=42, VIG=43, ABPAR=44, FPAR=45, ATRIB=46, CADEIA=47, 
-		WS=48, COMMENT=49;
+		PROGRAM=1, INTEGER=2, BOOLEAN=3, BEGIN=4, END=5, WHILE=6, DO=7, READ=8, 
+		VAR=9, FALSE=10, TRUE=11, WRITE=12, IF=13, THEN=14, ELSE=15, STRING=16, 
+		ID=17, CTE=18, MAIS=19, MENOS=20, MULT=21, DIV=22, OR=23, AND=24, NEG=25, 
+		OPAD=26, OPMUT=27, OPLOG=28, OPNEG=29, MENOR=30, MAIOR=31, MENORIG=32, 
+		MAIORIG=33, IGUAL=34, DIFERENTE=35, OPREL=36, PVIG=37, PONTO=38, DPONTOS=39, 
+		VIG=40, ABPAR=41, FPAR=42, ATRIB=43, CADEIA=44, WS=45, COMMENT=46;
 	public static final int
 		RULE_prog = 0, RULE_decls = 1, RULE_listDecl = 2, RULE_declTip = 3, RULE_listId = 4, 
 		RULE_tip = 5, RULE_cmdComp = 6, RULE_listCmd = 7, RULE_cmd = 8, RULE_cmdIf = 9, 
 		RULE_cmdWhile = 10, RULE_cmdRead = 11, RULE_cmdWrite = 12, RULE_listW = 13, 
-		RULE_elemW = 14, RULE_cmdAtrib = 15;
+		RULE_elemW = 14, RULE_cmdAtrib = 15, RULE_expr = 16, RULE_terms = 17, 
+		RULE_oPS = 18;
 	private static String[] makeRuleNames() {
 		return new String[] {
 			"prog", "decls", "listDecl", "declTip", "listId", "tip", "cmdComp", "listCmd", 
 			"cmd", "cmdIf", "cmdWhile", "cmdRead", "cmdWrite", "listW", "elemW", 
-			"cmdAtrib"
+			"cmdAtrib", "expr", "terms", "oPS"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
@@ -40,21 +40,20 @@ public class sintaticaParser extends Parser {
 	private static String[] makeLiteralNames() {
 		return new String[] {
 			null, null, null, null, null, null, null, null, null, null, null, null, 
-			null, null, null, null, null, null, null, null, null, null, "'+'", "'-'", 
-			"'*'", "'/'", null, null, "'~'", null, null, null, null, "'<'", "'>'", 
-			"'<='", "'>='", "'=='", "'<>'", null, "';'", "'.'", "':'", "','", "'('", 
-			"')'", "':='"
+			null, null, null, null, null, null, null, "'+'", "'-'", "'*'", "'/'", 
+			null, null, "'~'", null, null, null, null, "'<'", "'>'", "'<='", "'>='", 
+			"'=='", "'<>'", null, "';'", "'.'", "':'", "','", "'('", "')'", "':='"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, "Expr", "Terms", "OPS", "PROGRAM", "INTEGER", "BOOLEAN", "BEGIN", 
-			"END", "WHILE", "DO", "READ", "VAR", "FALSE", "TRUE", "WRITE", "IF", 
-			"THEN", "ELSE", "STRING", "ID", "CTE", "MAIS", "MENOS", "MULT", "DIV", 
-			"OR", "AND", "NEG", "OPAD", "OPMUT", "OPLOG", "OPNEG", "MENOR", "MAIOR", 
-			"MENORIG", "MAIORIG", "IGUAL", "DIFERENTE", "OPREL", "PVIG", "PONTO", 
-			"DPONTOS", "VIG", "ABPAR", "FPAR", "ATRIB", "CADEIA", "WS", "COMMENT"
+			null, "PROGRAM", "INTEGER", "BOOLEAN", "BEGIN", "END", "WHILE", "DO", 
+			"READ", "VAR", "FALSE", "TRUE", "WRITE", "IF", "THEN", "ELSE", "STRING", 
+			"ID", "CTE", "MAIS", "MENOS", "MULT", "DIV", "OR", "AND", "NEG", "OPAD", 
+			"OPMUT", "OPLOG", "OPNEG", "MENOR", "MAIOR", "MENORIG", "MAIORIG", "IGUAL", 
+			"DIFERENTE", "OPREL", "PVIG", "PONTO", "DPONTOS", "VIG", "ABPAR", "FPAR", 
+			"ATRIB", "CADEIA", "WS", "COMMENT"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -139,17 +138,17 @@ public class sintaticaParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(32);
+			setState(38);
 			match(PROGRAM);
-			setState(33);
+			setState(39);
 			match(ID);
-			setState(34);
+			setState(40);
 			match(PVIG);
-			setState(35);
+			setState(41);
 			decls();
-			setState(36);
+			setState(42);
 			cmdComp();
-			setState(37);
+			setState(43);
 			match(PONTO);
 			}
 		}
@@ -188,22 +187,22 @@ public class sintaticaParser extends Parser {
 		DeclsContext _localctx = new DeclsContext(_ctx, getState());
 		enterRule(_localctx, 2, RULE_decls);
 		try {
-			setState(42);
+			setState(48);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case WS:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(39);
+				setState(45);
 				match(WS);
 				}
 				break;
 			case VAR:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(40);
+				setState(46);
 				match(VAR);
-				setState(41);
+				setState(47);
 				listDecl();
 				}
 				break;
@@ -247,13 +246,13 @@ public class sintaticaParser extends Parser {
 		ListDeclContext _localctx = new ListDeclContext(_ctx, getState());
 		enterRule(_localctx, 4, RULE_listDecl);
 		try {
-			setState(48);
+			setState(54);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(44);
+				setState(50);
 				declTip();
 				}
 				break;
@@ -261,9 +260,9 @@ public class sintaticaParser extends Parser {
 				enterOuterAlt(_localctx, 2);
 				{
 				{
-				setState(45);
+				setState(51);
 				declTip();
-				setState(46);
+				setState(52);
 				listDecl();
 				}
 				}
@@ -310,13 +309,13 @@ public class sintaticaParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(50);
+			setState(56);
 			listId();
-			setState(51);
+			setState(57);
 			match(DPONTOS);
-			setState(52);
+			setState(58);
 			tip();
-			setState(53);
+			setState(59);
 			match(PVIG);
 			}
 		}
@@ -355,13 +354,13 @@ public class sintaticaParser extends Parser {
 		ListIdContext _localctx = new ListIdContext(_ctx, getState());
 		enterRule(_localctx, 8, RULE_listId);
 		try {
-			setState(59);
+			setState(65);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,2,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(55);
+				setState(61);
 				match(ID);
 				}
 				break;
@@ -369,11 +368,11 @@ public class sintaticaParser extends Parser {
 				enterOuterAlt(_localctx, 2);
 				{
 				{
-				setState(56);
+				setState(62);
 				match(ID);
-				setState(57);
+				setState(63);
 				match(VIG);
-				setState(58);
+				setState(64);
 				listId();
 				}
 				}
@@ -416,7 +415,7 @@ public class sintaticaParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(61);
+			setState(67);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << INTEGER) | (1L << BOOLEAN) | (1L << STRING))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -465,11 +464,11 @@ public class sintaticaParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(63);
+			setState(69);
 			match(BEGIN);
-			setState(64);
+			setState(70);
 			listCmd();
-			setState(65);
+			setState(71);
 			match(END);
 			}
 		}
@@ -510,13 +509,13 @@ public class sintaticaParser extends Parser {
 		ListCmdContext _localctx = new ListCmdContext(_ctx, getState());
 		enterRule(_localctx, 14, RULE_listCmd);
 		try {
-			setState(72);
+			setState(78);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,3,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(67);
+				setState(73);
 				cmd();
 				}
 				break;
@@ -524,11 +523,11 @@ public class sintaticaParser extends Parser {
 				enterOuterAlt(_localctx, 2);
 				{
 				{
-				setState(68);
+				setState(74);
 				cmd();
-				setState(69);
+				setState(75);
 				match(PVIG);
-				setState(70);
+				setState(76);
 				listCmd();
 				}
 				}
@@ -583,48 +582,48 @@ public class sintaticaParser extends Parser {
 		CmdContext _localctx = new CmdContext(_ctx, getState());
 		enterRule(_localctx, 16, RULE_cmd);
 		try {
-			setState(80);
+			setState(86);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case IF:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(74);
+				setState(80);
 				cmdIf();
 				}
 				break;
 			case WHILE:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(75);
+				setState(81);
 				cmdWhile();
 				}
 				break;
 			case READ:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(76);
+				setState(82);
 				cmdRead();
 				}
 				break;
 			case WRITE:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(77);
+				setState(83);
 				cmdWrite();
 				}
 				break;
 			case ID:
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(78);
+				setState(84);
 				cmdAtrib();
 				}
 				break;
 			case BEGIN:
 				enterOuterAlt(_localctx, 6);
 				{
-				setState(79);
+				setState(85);
 				cmdComp();
 				}
 				break;
@@ -645,7 +644,9 @@ public class sintaticaParser extends Parser {
 
 	public static class CmdIfContext extends ParserRuleContext {
 		public TerminalNode IF() { return getToken(sintaticaParser.IF, 0); }
-		public TerminalNode Expr() { return getToken(sintaticaParser.Expr, 0); }
+		public ExprContext expr() {
+			return getRuleContext(ExprContext.class,0);
+		}
 		public TerminalNode THEN() { return getToken(sintaticaParser.THEN, 0); }
 		public List<CmdContext> cmd() {
 			return getRuleContexts(CmdContext.class);
@@ -672,20 +673,20 @@ public class sintaticaParser extends Parser {
 		CmdIfContext _localctx = new CmdIfContext(_ctx, getState());
 		enterRule(_localctx, 18, RULE_cmdIf);
 		try {
-			setState(93);
+			setState(100);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,5,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
 				{
-				setState(82);
+				setState(88);
 				match(IF);
-				setState(83);
-				match(Expr);
-				setState(84);
+				setState(89);
+				expr();
+				setState(90);
 				match(THEN);
-				setState(85);
+				setState(91);
 				cmd();
 				}
 				}
@@ -694,17 +695,17 @@ public class sintaticaParser extends Parser {
 				enterOuterAlt(_localctx, 2);
 				{
 				{
-				setState(86);
+				setState(93);
 				match(IF);
-				setState(87);
-				match(Expr);
-				setState(88);
+				setState(94);
+				expr();
+				setState(95);
 				match(THEN);
-				setState(89);
+				setState(96);
 				cmd();
-				setState(90);
+				setState(97);
 				match(ELSE);
-				setState(91);
+				setState(98);
 				cmd();
 				}
 				}
@@ -724,7 +725,9 @@ public class sintaticaParser extends Parser {
 
 	public static class CmdWhileContext extends ParserRuleContext {
 		public TerminalNode WHILE() { return getToken(sintaticaParser.WHILE, 0); }
-		public TerminalNode Expr() { return getToken(sintaticaParser.Expr, 0); }
+		public ExprContext expr() {
+			return getRuleContext(ExprContext.class,0);
+		}
 		public TerminalNode DO() { return getToken(sintaticaParser.DO, 0); }
 		public CmdContext cmd() {
 			return getRuleContext(CmdContext.class,0);
@@ -749,13 +752,13 @@ public class sintaticaParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(95);
+			setState(102);
 			match(WHILE);
-			setState(96);
-			match(Expr);
-			setState(97);
+			setState(103);
+			expr();
+			setState(104);
 			match(DO);
-			setState(98);
+			setState(105);
 			cmd();
 			}
 		}
@@ -797,13 +800,13 @@ public class sintaticaParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(100);
+			setState(107);
 			match(READ);
-			setState(101);
+			setState(108);
 			match(ABPAR);
-			setState(102);
+			setState(109);
 			listId();
-			setState(103);
+			setState(110);
 			match(FPAR);
 			}
 		}
@@ -845,13 +848,13 @@ public class sintaticaParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(105);
+			setState(112);
 			match(WRITE);
-			setState(106);
+			setState(113);
 			match(ABPAR);
-			setState(107);
+			setState(114);
 			listW();
-			setState(108);
+			setState(115);
 			match(FPAR);
 			}
 		}
@@ -892,13 +895,13 @@ public class sintaticaParser extends Parser {
 		ListWContext _localctx = new ListWContext(_ctx, getState());
 		enterRule(_localctx, 26, RULE_listW);
 		try {
-			setState(115);
+			setState(122);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,6,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(110);
+				setState(117);
 				elemW();
 				}
 				break;
@@ -906,11 +909,11 @@ public class sintaticaParser extends Parser {
 				enterOuterAlt(_localctx, 2);
 				{
 				{
-				setState(111);
+				setState(118);
 				elemW();
-				setState(112);
+				setState(119);
 				match(VIG);
-				setState(113);
+				setState(120);
 				listW();
 				}
 				}
@@ -929,7 +932,9 @@ public class sintaticaParser extends Parser {
 	}
 
 	public static class ElemWContext extends ParserRuleContext {
-		public TerminalNode Expr() { return getToken(sintaticaParser.Expr, 0); }
+		public ExprContext expr() {
+			return getRuleContext(ExprContext.class,0);
+		}
 		public TerminalNode CADEIA() { return getToken(sintaticaParser.CADEIA, 0); }
 		public ElemWContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -948,20 +953,31 @@ public class sintaticaParser extends Parser {
 	public final ElemWContext elemW() throws RecognitionException {
 		ElemWContext _localctx = new ElemWContext(_ctx, getState());
 		enterRule(_localctx, 28, RULE_elemW);
-		int _la;
 		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(117);
-			_la = _input.LA(1);
-			if ( !(_la==Expr || _la==CADEIA) ) {
-			_errHandler.recoverInline(this);
-			}
-			else {
-				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-				_errHandler.reportMatch(this);
-				consume();
-			}
+			setState(126);
+			_errHandler.sync(this);
+			switch (_input.LA(1)) {
+			case FALSE:
+			case TRUE:
+			case ID:
+			case CTE:
+			case OPNEG:
+			case ABPAR:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(124);
+				expr();
+				}
+				break;
+			case CADEIA:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(125);
+				match(CADEIA);
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 		}
 		catch (RecognitionException re) {
@@ -978,7 +994,9 @@ public class sintaticaParser extends Parser {
 	public static class CmdAtribContext extends ParserRuleContext {
 		public TerminalNode ID() { return getToken(sintaticaParser.ID, 0); }
 		public TerminalNode ATRIB() { return getToken(sintaticaParser.ATRIB, 0); }
-		public TerminalNode Expr() { return getToken(sintaticaParser.Expr, 0); }
+		public ExprContext expr() {
+			return getRuleContext(ExprContext.class,0);
+		}
 		public CmdAtribContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -999,12 +1017,206 @@ public class sintaticaParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(119);
+			setState(128);
 			match(ID);
-			setState(120);
+			setState(129);
 			match(ATRIB);
-			setState(121);
-			match(Expr);
+			setState(130);
+			expr();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class ExprContext extends ParserRuleContext {
+		public TerminalNode ABPAR() { return getToken(sintaticaParser.ABPAR, 0); }
+		public ExprContext expr() {
+			return getRuleContext(ExprContext.class,0);
+		}
+		public TerminalNode FPAR() { return getToken(sintaticaParser.FPAR, 0); }
+		public List<TermsContext> terms() {
+			return getRuleContexts(TermsContext.class);
+		}
+		public TermsContext terms(int i) {
+			return getRuleContext(TermsContext.class,i);
+		}
+		public OPSContext oPS() {
+			return getRuleContext(OPSContext.class,0);
+		}
+		public TerminalNode OPNEG() { return getToken(sintaticaParser.OPNEG, 0); }
+		public ExprContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_expr; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof sintaticaListener ) ((sintaticaListener)listener).enterExpr(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof sintaticaListener ) ((sintaticaListener)listener).exitExpr(this);
+		}
+	}
+
+	public final ExprContext expr() throws RecognitionException {
+		ExprContext _localctx = new ExprContext(_ctx, getState());
+		enterRule(_localctx, 32, RULE_expr);
+		int _la;
+		try {
+			setState(145);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,9,_ctx) ) {
+			case 1:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(132);
+				match(ABPAR);
+				setState(133);
+				expr();
+				setState(134);
+				match(FPAR);
+				}
+				break;
+			case 2:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(136);
+				terms();
+				}
+				break;
+			case 3:
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(137);
+				terms();
+				setState(138);
+				oPS();
+				setState(139);
+				terms();
+				}
+				break;
+			case 4:
+				enterOuterAlt(_localctx, 4);
+				{
+				setState(142);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				if (_la==OPNEG) {
+					{
+					setState(141);
+					match(OPNEG);
+					}
+				}
+
+				setState(144);
+				terms();
+				}
+				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class TermsContext extends ParserRuleContext {
+		public TerminalNode ID() { return getToken(sintaticaParser.ID, 0); }
+		public TerminalNode CTE() { return getToken(sintaticaParser.CTE, 0); }
+		public TerminalNode TRUE() { return getToken(sintaticaParser.TRUE, 0); }
+		public TerminalNode FALSE() { return getToken(sintaticaParser.FALSE, 0); }
+		public TermsContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_terms; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof sintaticaListener ) ((sintaticaListener)listener).enterTerms(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof sintaticaListener ) ((sintaticaListener)listener).exitTerms(this);
+		}
+	}
+
+	public final TermsContext terms() throws RecognitionException {
+		TermsContext _localctx = new TermsContext(_ctx, getState());
+		enterRule(_localctx, 34, RULE_terms);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(147);
+			_la = _input.LA(1);
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << FALSE) | (1L << TRUE) | (1L << ID) | (1L << CTE))) != 0)) ) {
+			_errHandler.recoverInline(this);
+			}
+			else {
+				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+				_errHandler.reportMatch(this);
+				consume();
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class OPSContext extends ParserRuleContext {
+		public TerminalNode OPREL() { return getToken(sintaticaParser.OPREL, 0); }
+		public TerminalNode OPAD() { return getToken(sintaticaParser.OPAD, 0); }
+		public TerminalNode OPMUT() { return getToken(sintaticaParser.OPMUT, 0); }
+		public OPSContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_oPS; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof sintaticaListener ) ((sintaticaListener)listener).enterOPS(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof sintaticaListener ) ((sintaticaListener)listener).exitOPS(this);
+		}
+	}
+
+	public final OPSContext oPS() throws RecognitionException {
+		OPSContext _localctx = new OPSContext(_ctx, getState());
+		enterRule(_localctx, 36, RULE_oPS);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(149);
+			_la = _input.LA(1);
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << OPAD) | (1L << OPMUT) | (1L << OPREL))) != 0)) ) {
+			_errHandler.recoverInline(this);
+			}
+			else {
+				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+				_errHandler.reportMatch(this);
+				consume();
+			}
 			}
 		}
 		catch (RecognitionException re) {
@@ -1019,35 +1231,46 @@ public class sintaticaParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\63~\4\2\t\2\4\3\t"+
-		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4"+
-		"\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\3\2\3\2\3\2\3\2"+
-		"\3\2\3\2\3\2\3\3\3\3\3\3\5\3-\n\3\3\4\3\4\3\4\3\4\5\4\63\n\4\3\5\3\5\3"+
-		"\5\3\5\3\5\3\6\3\6\3\6\3\6\5\6>\n\6\3\7\3\7\3\b\3\b\3\b\3\b\3\t\3\t\3"+
-		"\t\3\t\3\t\5\tK\n\t\3\n\3\n\3\n\3\n\3\n\3\n\5\nS\n\n\3\13\3\13\3\13\3"+
-		"\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\5\13`\n\13\3\f\3\f\3\f\3\f\3\f"+
-		"\3\r\3\r\3\r\3\r\3\r\3\16\3\16\3\16\3\16\3\16\3\17\3\17\3\17\3\17\3\17"+
-		"\5\17v\n\17\3\20\3\20\3\21\3\21\3\21\3\21\3\21\2\2\22\2\4\6\b\n\f\16\20"+
-		"\22\24\26\30\32\34\36 \2\4\4\2\7\b\25\25\4\2\3\3\61\61\2x\2\"\3\2\2\2"+
-		"\4,\3\2\2\2\6\62\3\2\2\2\b\64\3\2\2\2\n=\3\2\2\2\f?\3\2\2\2\16A\3\2\2"+
-		"\2\20J\3\2\2\2\22R\3\2\2\2\24_\3\2\2\2\26a\3\2\2\2\30f\3\2\2\2\32k\3\2"+
-		"\2\2\34u\3\2\2\2\36w\3\2\2\2 y\3\2\2\2\"#\7\6\2\2#$\7\26\2\2$%\7*\2\2"+
-		"%&\5\4\3\2&\'\5\16\b\2\'(\7+\2\2(\3\3\2\2\2)-\7\62\2\2*+\7\16\2\2+-\5"+
-		"\6\4\2,)\3\2\2\2,*\3\2\2\2-\5\3\2\2\2.\63\5\b\5\2/\60\5\b\5\2\60\61\5"+
-		"\6\4\2\61\63\3\2\2\2\62.\3\2\2\2\62/\3\2\2\2\63\7\3\2\2\2\64\65\5\n\6"+
-		"\2\65\66\7,\2\2\66\67\5\f\7\2\678\7*\2\28\t\3\2\2\29>\7\26\2\2:;\7\26"+
-		"\2\2;<\7-\2\2<>\5\n\6\2=9\3\2\2\2=:\3\2\2\2>\13\3\2\2\2?@\t\2\2\2@\r\3"+
-		"\2\2\2AB\7\t\2\2BC\5\20\t\2CD\7\n\2\2D\17\3\2\2\2EK\5\22\n\2FG\5\22\n"+
-		"\2GH\7*\2\2HI\5\20\t\2IK\3\2\2\2JE\3\2\2\2JF\3\2\2\2K\21\3\2\2\2LS\5\24"+
-		"\13\2MS\5\26\f\2NS\5\30\r\2OS\5\32\16\2PS\5 \21\2QS\5\16\b\2RL\3\2\2\2"+
-		"RM\3\2\2\2RN\3\2\2\2RO\3\2\2\2RP\3\2\2\2RQ\3\2\2\2S\23\3\2\2\2TU\7\22"+
-		"\2\2UV\7\3\2\2VW\7\23\2\2W`\5\22\n\2XY\7\22\2\2YZ\7\3\2\2Z[\7\23\2\2["+
-		"\\\5\22\n\2\\]\7\24\2\2]^\5\22\n\2^`\3\2\2\2_T\3\2\2\2_X\3\2\2\2`\25\3"+
-		"\2\2\2ab\7\13\2\2bc\7\3\2\2cd\7\f\2\2de\5\22\n\2e\27\3\2\2\2fg\7\r\2\2"+
-		"gh\7.\2\2hi\5\n\6\2ij\7/\2\2j\31\3\2\2\2kl\7\21\2\2lm\7.\2\2mn\5\34\17"+
-		"\2no\7/\2\2o\33\3\2\2\2pv\5\36\20\2qr\5\36\20\2rs\7-\2\2st\5\34\17\2t"+
-		"v\3\2\2\2up\3\2\2\2uq\3\2\2\2v\35\3\2\2\2wx\t\3\2\2x\37\3\2\2\2yz\7\26"+
-		"\2\2z{\7\60\2\2{|\7\3\2\2|!\3\2\2\2\t,\62=JR_u";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\60\u009a\4\2\t\2"+
+		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
+		"\t\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
+		"\4\23\t\23\4\24\t\24\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\3\3\3\3\3\5\3\63\n"+
+		"\3\3\4\3\4\3\4\3\4\5\49\n\4\3\5\3\5\3\5\3\5\3\5\3\6\3\6\3\6\3\6\5\6D\n"+
+		"\6\3\7\3\7\3\b\3\b\3\b\3\b\3\t\3\t\3\t\3\t\3\t\5\tQ\n\t\3\n\3\n\3\n\3"+
+		"\n\3\n\3\n\5\nY\n\n\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13"+
+		"\3\13\3\13\5\13g\n\13\3\f\3\f\3\f\3\f\3\f\3\r\3\r\3\r\3\r\3\r\3\16\3\16"+
+		"\3\16\3\16\3\16\3\17\3\17\3\17\3\17\3\17\5\17}\n\17\3\20\3\20\5\20\u0081"+
+		"\n\20\3\21\3\21\3\21\3\21\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22"+
+		"\3\22\5\22\u0091\n\22\3\22\5\22\u0094\n\22\3\23\3\23\3\24\3\24\3\24\2"+
+		"\2\25\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&\2\5\4\2\4\5\22\22\4"+
+		"\2\f\r\23\24\4\2\34\35&&\2\u0096\2(\3\2\2\2\4\62\3\2\2\2\68\3\2\2\2\b"+
+		":\3\2\2\2\nC\3\2\2\2\fE\3\2\2\2\16G\3\2\2\2\20P\3\2\2\2\22X\3\2\2\2\24"+
+		"f\3\2\2\2\26h\3\2\2\2\30m\3\2\2\2\32r\3\2\2\2\34|\3\2\2\2\36\u0080\3\2"+
+		"\2\2 \u0082\3\2\2\2\"\u0093\3\2\2\2$\u0095\3\2\2\2&\u0097\3\2\2\2()\7"+
+		"\3\2\2)*\7\23\2\2*+\7\'\2\2+,\5\4\3\2,-\5\16\b\2-.\7(\2\2.\3\3\2\2\2/"+
+		"\63\7/\2\2\60\61\7\13\2\2\61\63\5\6\4\2\62/\3\2\2\2\62\60\3\2\2\2\63\5"+
+		"\3\2\2\2\649\5\b\5\2\65\66\5\b\5\2\66\67\5\6\4\2\679\3\2\2\28\64\3\2\2"+
+		"\28\65\3\2\2\29\7\3\2\2\2:;\5\n\6\2;<\7)\2\2<=\5\f\7\2=>\7\'\2\2>\t\3"+
+		"\2\2\2?D\7\23\2\2@A\7\23\2\2AB\7*\2\2BD\5\n\6\2C?\3\2\2\2C@\3\2\2\2D\13"+
+		"\3\2\2\2EF\t\2\2\2F\r\3\2\2\2GH\7\6\2\2HI\5\20\t\2IJ\7\7\2\2J\17\3\2\2"+
+		"\2KQ\5\22\n\2LM\5\22\n\2MN\7\'\2\2NO\5\20\t\2OQ\3\2\2\2PK\3\2\2\2PL\3"+
+		"\2\2\2Q\21\3\2\2\2RY\5\24\13\2SY\5\26\f\2TY\5\30\r\2UY\5\32\16\2VY\5 "+
+		"\21\2WY\5\16\b\2XR\3\2\2\2XS\3\2\2\2XT\3\2\2\2XU\3\2\2\2XV\3\2\2\2XW\3"+
+		"\2\2\2Y\23\3\2\2\2Z[\7\17\2\2[\\\5\"\22\2\\]\7\20\2\2]^\5\22\n\2^g\3\2"+
+		"\2\2_`\7\17\2\2`a\5\"\22\2ab\7\20\2\2bc\5\22\n\2cd\7\21\2\2de\5\22\n\2"+
+		"eg\3\2\2\2fZ\3\2\2\2f_\3\2\2\2g\25\3\2\2\2hi\7\b\2\2ij\5\"\22\2jk\7\t"+
+		"\2\2kl\5\22\n\2l\27\3\2\2\2mn\7\n\2\2no\7+\2\2op\5\n\6\2pq\7,\2\2q\31"+
+		"\3\2\2\2rs\7\16\2\2st\7+\2\2tu\5\34\17\2uv\7,\2\2v\33\3\2\2\2w}\5\36\20"+
+		"\2xy\5\36\20\2yz\7*\2\2z{\5\34\17\2{}\3\2\2\2|w\3\2\2\2|x\3\2\2\2}\35"+
+		"\3\2\2\2~\u0081\5\"\22\2\177\u0081\7.\2\2\u0080~\3\2\2\2\u0080\177\3\2"+
+		"\2\2\u0081\37\3\2\2\2\u0082\u0083\7\23\2\2\u0083\u0084\7-\2\2\u0084\u0085"+
+		"\5\"\22\2\u0085!\3\2\2\2\u0086\u0087\7+\2\2\u0087\u0088\5\"\22\2\u0088"+
+		"\u0089\7,\2\2\u0089\u0094\3\2\2\2\u008a\u0094\5$\23\2\u008b\u008c\5$\23"+
+		"\2\u008c\u008d\5&\24\2\u008d\u008e\5$\23\2\u008e\u0094\3\2\2\2\u008f\u0091"+
+		"\7\37\2\2\u0090\u008f\3\2\2\2\u0090\u0091\3\2\2\2\u0091\u0092\3\2\2\2"+
+		"\u0092\u0094\5$\23\2\u0093\u0086\3\2\2\2\u0093\u008a\3\2\2\2\u0093\u008b"+
+		"\3\2\2\2\u0093\u0090\3\2\2\2\u0094#\3\2\2\2\u0095\u0096\t\3\2\2\u0096"+
+		"%\3\2\2\2\u0097\u0098\t\4\2\2\u0098\'\3\2\2\2\f\628CPXf|\u0080\u0090\u0093";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

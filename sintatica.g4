@@ -22,14 +22,7 @@ elemW: expr | CADEIA;
 
 cmdAtrib: ID ATRIB expr;
 
-//Expr: (ABPAR Expr FPAR) ;
-
-//Expr: (ABPAR Expr FPAR) | (Expr OPREL Expr) | (Expr OPAD Expr) | (Expr OPMUT Expr) | ID | CTE | TRUE | FALSE | (OPNEG? Expr);
-
 expr: ABPAR expr FPAR | terms | terms oPS terms | OPNEG? terms;
 terms: ID | CTE | TRUE | FALSE;
 oPS: OPREL | OPAD | OPMUT;
 
-
-//Expr: ABPAR Expr FPAR | Expr (OPREL | OPAD | OPMUT) Expr | ID | CTE | TRUE | FALSE; | OPNEG? Expr;
- 
