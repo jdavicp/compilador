@@ -18,13 +18,13 @@ public class sintaticaParser extends Parser {
 	public static final int
 		Decls=1, ListDecl=2, DeclTip=3, ListId=4, Tip=5, CmdComp=6, ListCmd=7, 
 		Cmd=8, CmdIf=9, CmdWhile=10, CmdRead=11, CmdWrite=12, ListW=13, ElemW=14, 
-		CmdAtrib=15, Expr=16, PROGRAM=17, INTEGER=18, BOOLEAN=19, BEGIN=20, END=21, 
-		WHILE=22, DO=23, READ=24, VAR=25, FALSE=26, TRUE=27, WRITE=28, IF=29, 
-		THEN=30, ELSE=31, STRING=32, ID=33, CTE=34, MAIS=35, MENOS=36, MULT=37, 
-		DIV=38, OR=39, AND=40, NEG=41, OPAD=42, OPMUT=43, OPLOG=44, OPNEG=45, 
-		MENOR=46, MAIOR=47, MENORIG=48, MAIORIG=49, IGUAL=50, DIFERENTE=51, OPREL=52, 
-		PVIG=53, PONTO=54, DPONTOS=55, VIG=56, ABPAR=57, FPAR=58, ATRIB=59, CADEIA=60, 
-		WS=61, COMMENT=62;
+		CmdAtrib=15, Expr=16, Terms=17, OPS=18, PROGRAM=19, INTEGER=20, BOOLEAN=21, 
+		BEGIN=22, END=23, WHILE=24, DO=25, READ=26, VAR=27, FALSE=28, TRUE=29, 
+		WRITE=30, IF=31, THEN=32, ELSE=33, STRING=34, ID=35, CTE=36, MAIS=37, 
+		MENOS=38, MULT=39, DIV=40, OR=41, AND=42, NEG=43, OPAD=44, OPMUT=45, OPLOG=46, 
+		OPNEG=47, MENOR=48, MAIOR=49, MENORIG=50, MAIORIG=51, IGUAL=52, DIFERENTE=53, 
+		OPREL=54, PVIG=55, PONTO=56, DPONTOS=57, VIG=58, ABPAR=59, FPAR=60, ATRIB=61, 
+		CADEIA=62, WS=63, COMMENT=64;
 	public static final int
 		RULE_prog = 0;
 	private static String[] makeRuleNames() {
@@ -38,10 +38,10 @@ public class sintaticaParser extends Parser {
 		return new String[] {
 			null, null, null, null, null, null, null, null, null, null, null, null, 
 			null, null, null, null, null, null, null, null, null, null, null, null, 
-			null, null, null, null, null, null, null, null, null, null, null, "'+'", 
-			"'-'", "'*'", "'/'", null, null, "'~'", null, null, null, null, "'<'", 
-			"'>'", "'<='", "'>='", "'=='", "'<>'", null, "';'", "'.'", "':'", "','", 
-			"'('", "')'", "':='"
+			null, null, null, null, null, null, null, null, null, null, null, null, 
+			null, "'+'", "'-'", "'*'", "'/'", null, null, "'~'", null, null, null, 
+			null, "'<'", "'>'", "'<='", "'>='", "'=='", "'<>'", null, "';'", "'.'", 
+			"':'", "','", "'('", "')'", "':='"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
@@ -49,12 +49,13 @@ public class sintaticaParser extends Parser {
 		return new String[] {
 			null, "Decls", "ListDecl", "DeclTip", "ListId", "Tip", "CmdComp", "ListCmd", 
 			"Cmd", "CmdIf", "CmdWhile", "CmdRead", "CmdWrite", "ListW", "ElemW", 
-			"CmdAtrib", "Expr", "PROGRAM", "INTEGER", "BOOLEAN", "BEGIN", "END", 
-			"WHILE", "DO", "READ", "VAR", "FALSE", "TRUE", "WRITE", "IF", "THEN", 
-			"ELSE", "STRING", "ID", "CTE", "MAIS", "MENOS", "MULT", "DIV", "OR", 
-			"AND", "NEG", "OPAD", "OPMUT", "OPLOG", "OPNEG", "MENOR", "MAIOR", "MENORIG", 
-			"MAIORIG", "IGUAL", "DIFERENTE", "OPREL", "PVIG", "PONTO", "DPONTOS", 
-			"VIG", "ABPAR", "FPAR", "ATRIB", "CADEIA", "WS", "COMMENT"
+			"CmdAtrib", "Expr", "Terms", "OPS", "PROGRAM", "INTEGER", "BOOLEAN", 
+			"BEGIN", "END", "WHILE", "DO", "READ", "VAR", "FALSE", "TRUE", "WRITE", 
+			"IF", "THEN", "ELSE", "STRING", "ID", "CTE", "MAIS", "MENOS", "MULT", 
+			"DIV", "OR", "AND", "NEG", "OPAD", "OPMUT", "OPLOG", "OPNEG", "MENOR", 
+			"MAIOR", "MENORIG", "MAIORIG", "IGUAL", "DIFERENTE", "OPREL", "PVIG", 
+			"PONTO", "DPONTOS", "VIG", "ABPAR", "FPAR", "ATRIB", "CADEIA", "WS", 
+			"COMMENT"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -161,10 +162,9 @@ public class sintaticaParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3@\f\4\2\t\2\3\2\3"+
-		"\2\3\2\3\2\3\2\3\2\3\2\3\2\2\2\3\2\2\2\2\n\2\4\3\2\2\2\4\5\7\23\2\2\5"+
-		"\6\7#\2\2\6\7\7\67\2\2\7\b\7\3\2\2\b\t\7\b\2\2\t\n\78\2\2\n\3\3\2\2\2"+
-		"\2";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3B\f\4\2\t\2\3\2\3"+
+		"\2\3\2\3\2\3\2\3\2\3\2\3\2\2\2\3\2\2\2\2\n\2\4\3\2\2\2\4\5\7\25\2\2\5"+
+		"\6\7%\2\2\6\7\79\2\2\7\b\7\3\2\2\b\t\7\b\2\2\t\n\7:\2\2\n\3\3\2\2\2\2";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
