@@ -17,15 +17,15 @@ THEN: T H E N;
 ELSE: E L S E;
 STRING: S T R I N G;
 
-ID: (LETTER | UNDERSCORE) (LETTER | NUMBER | UNDERSCORE){1, 16};
-CTE: ('-'NUMBER) | NUMBER;
+ID: (LETTER | UNDERSCORE) (LETTER | NUMBER | UNDERSCORE)*;
+CTE: NUMBER+;
 
 MAIS: '+';
 MENOS: '-';
 MULT: '*';
 DIV: '/';
-OR: 'OR';
-AND: 'AND';
+OR: O R;
+AND: A N D;
 NEG: '~';
 
 OPAD: MAIS | MENOS;
@@ -50,7 +50,7 @@ ABPAR: '(';
 FPAR: ')';
 ATRIB: ':=';
 CADEIA: '"'(LETTER | NUMBER | UNDERSCORE | SYMBOLS)*'"';
-WS: [ \n\t\r] -> skip;
+WS: [ \n\t\r]+ -> skip;
 COMMENT : '/' .*? '/' -> skip;
 
 
