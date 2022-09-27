@@ -18,14 +18,29 @@ ELSE: E L S E;
 STRING: S T R I N G;
 
 ID: (LETTER | UNDERSCORE) (LETTER | NUMBER | UNDERSCORE){1, 16};
-CTE: ('-'NUMBER{1, 5}) | NUMBER{1, 5};
+CTE: ('-'NUMBER) | NUMBER;
 
-OPAD: '+' | '-';
-OPMUT: '*' | '/';
-OPLOG: 'OR' | 'AND';
-OPNEG: '~';
+MAIS: '+';
+MENOS: '-';
+MULT: '*';
+DIV: '/';
+OR: 'OR';
+AND: 'AND';
+NEG: '~';
 
-OPREL: '<' | '>' | '<=' | '>=' | '==' | '<>';
+OPAD: MAIS | MENOS;
+OPMUT: MULT | DIV;
+OPLOG: OR | AND;
+OPNEG: NEG;
+
+MENOR: '<';
+MAIOR: '>';
+MENORIG: '<=';
+MAIORIG: '>=';
+IGUAL: '==';
+DIFERENTE: '<>';
+
+OPREL: MENOR | MAIOR | MENORIG | MAIORIG | IGUAL | DIFERENTE;
 
 PVIG: ';';
 PONTO: '.';
