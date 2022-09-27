@@ -13,22 +13,22 @@ cmdComp: BEGIN listCmd END;
 listCmd: cmd | (cmd PVIG listCmd);
 cmd: cmdIf | cmdWhile | cmdRead | cmdWrite | cmdAtrib | cmdComp;
 
-cmdIf: (IF Expr THEN cmd) | (IF Expr THEN cmd ELSE cmd);
-cmdWhile: WHILE Expr DO cmd;
+cmdIf: (IF expr THEN cmd) | (IF expr THEN cmd ELSE cmd);
+cmdWhile: WHILE expr DO cmd;
 cmdRead: READ ABPAR listId FPAR;
 cmdWrite: WRITE ABPAR listW FPAR;
 listW: elemW | (elemW VIG listW);
-elemW: Expr | CADEIA;
+elemW: expr | CADEIA;
 
-cmdAtrib: ID ATRIB Expr;
+cmdAtrib: ID ATRIB expr;
 
 //Expr: (ABPAR Expr FPAR) ;
 
 //Expr: (ABPAR Expr FPAR) | (Expr OPREL Expr) | (Expr OPAD Expr) | (Expr OPMUT Expr) | ID | CTE | TRUE | FALSE | (OPNEG? Expr);
 
-Expr: ABPAR Expr FPAR | Terms | Terms OPS Terms | OPNEG? Terms;
-Terms: ID | CTE | TRUE | FALSE;
-OPS: OPREL | OPAD | OPMUT;
+expr: ABPAR expr FPAR | terms | terms oPS terms | OPNEG? terms;
+terms: ID | CTE | TRUE | FALSE;
+oPS: OPREL | OPAD | OPMUT;
 
 
 //Expr: ABPAR Expr FPAR | Expr (OPREL | OPAD | OPMUT) Expr | ID | CTE | TRUE | FALSE; | OPNEG? Expr;
